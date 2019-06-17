@@ -1,14 +1,66 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+<ion-content class="img-bg">
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
+  <div class="overlayer-before-start" *ngIf="!gameStarted && isPlayerConnected" (click)="start()" >
+    <p> 
+      <span class="inscructionGame" *ngIf="!touched">WAITING FOR PLAYER</span>
+      {{ counter }}
+    </p>
+  </div>
+
+  <div class="overlayer-before-player-connected" *ngIf="!isPlayerConnected" >
+    <p>
+      <span class="inscructionGame">Connecting server...</span>
+      <br>
+      <img [src]="'assets/imgs/loading.gif'" alt="" width="75" style="position: absolute; margin-top: -90px; margin-left: -30px;">
+    </p>
+  </div>
+
+  <div class="row">
+    <div class="score">
+      <p>Score: {{ score }}</p>
+    </div>
+  </div>
+
+  <p class="top-padding" style="font-size: 40px; text-align: center; z-index: 999">
+    {{operationQuestion?.numberA}} x {{operationQuestion?.numberB}}
+    <!-- <br>
+    <span style="font-size: 16px">Time: {{cronometerCount}}</span> -->
   </p>
+  
+
+  <div class="keyboard">
+    <div class="row">
+      <div class="response-user">
+        <p>
+          {{userLogged.answer}}
+        </p>
+    </div>
+    </div>
+
+    <div class="row">
+      <a href="#" class="buttom" (click)="checkResult(7)">7</a>
+      <a href="#" class="buttom" (click)="checkResult(8)">8</a>
+      <a href="#" class="buttom" (click)="checkResult(9)">9</a>
+    </div>
+
+    <div class="row">
+      <a href="#" class="buttom" (click)="checkResult(4)">4</a>
+      <a href="#" class="buttom" (click)="checkResult(5)">5</a>
+      <a href="#" class="buttom" (click)="checkResult(6)">6</a>
+    </div>
+
+    <div class="row">
+      <a href="#" class="buttom" (click)="checkResult(1)">1</a>
+      <a href="#" class="buttom" (click)="checkResult(2)">2</a>
+      <a href="#" class="buttom" (click)="checkResult(3)">3</a>
+    </div>
+
+    <div class="row">
+      <a href="#" class="buttom" (click)="checkResult(0)">0</a>
+      <a href="#" class="buttom">,</a>
+      <a href="#" class="buttom" (click)="clear()" >CE</a>
+    </div>
+  
+  </div>
+
 </ion-content>
